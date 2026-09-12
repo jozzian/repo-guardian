@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+
+# Test tooling
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Generated fixture repositories (built by tests/make_fixtures.py;
+# they contain planted dummy secrets and must never be committed)
+tests/fixtures/
+
+# Scanner output
+*.report.json
+
+# Editors / OS
+.idea/
+.vscode/
+.DS_Store

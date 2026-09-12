@@ -1,0 +1,28 @@
+# Repo Guardian gitleaks configuration.
+#
+# This file lives with the scanner (repo_guardian/gitleaks.toml), not
+# in the scanned repositories. Rationale: the scanner owns its
+# precision policy. If allowlists lived in fixture or target repos,
+# each repo could weaken or disable detection, and the acceptance
+# tests would be tuning the thing they are supposed to verify.
+#
+# Strategy: extend the gitleaks default rule set, then allowlist the
+# two well-known placeholder classes that naive scans flag:
+# documented example AWS keys and lines that are obviously
+# placeholders.
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Documented example AWS access key from AWS docs."
+regexes = ["AKIAIO...MPLE"]
+
+[[allowlists]]
+description = "Obvious placeholder values in examples and docs."
+regexes = ["(?i)your-api-key-here|your_api_key_here|api-key-placeholder"]
+
+[[allowlists]]
+description = "Lines marked as examples, placeholders, or samples."
+regexes = ['''(?i)(example|placeholder|dummy|sample|changeme|redacted)''']
+regexTarget = "line"

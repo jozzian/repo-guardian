@@ -1,0 +1,4 @@
+#!/bin/sh
+# Launcher for the Repo Guardian scanner CLI. Works from any cwd.
+DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+exec python3 "$DIR/repo_guardian/cli.py" "$@"
